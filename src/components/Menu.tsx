@@ -1,25 +1,41 @@
 import React, { useState } from 'react';
-import { Menu } from 'antd';
+import { Menu, Affix } from 'antd';
 
-function MenuComponent() {
-  const [tab, setTab] = useState('algebra');
+import { Tab } from '../types';
 
+function MenuComponent(
+  {
+    tab,
+    switchTab
+  }:
+  {
+    tab: Tab,
+    switchTab: (tab: Tab) => void
+  }
+) {
   function handleMenuClick(event: any) {
-    setTab(event.key);
+    switchTab(event.key);
   }
 
   return (
-    <Menu onClick={handleMenuClick} selectedKeys={[tab]} mode='horizontal'>
-      <Menu.Item key='basicalgebra'>
-        Basic Math and Algebra
-      </Menu.Item>
-      <Menu.Item key='geometry'>
-        Geometry
-      </Menu.Item>
-      <Menu.Item key='biochem'>
-        Biology and Chemistry
-      </Menu.Item>
-    </Menu>
+    <Affix offsetTop={0}>
+      <Menu
+        onClick={handleMenuClick}
+        selectedKeys={[tab]}
+        mode='horizontal'
+        style={{ marginBottom: '1em' }}
+      >
+        <Menu.Item key='basicalgebra'>
+          Basic Math and Algebra
+        </Menu.Item>
+        <Menu.Item key='geometry'>
+          Geometry
+        </Menu.Item>
+        <Menu.Item key='biochem'>
+          Biology and Chemistry
+        </Menu.Item>
+      </Menu>
+    </Affix>
   );
 }
 

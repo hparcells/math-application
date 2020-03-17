@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Card, Col } from 'antd';
 import { Link } from 'react-router-dom';
 
 function MenuCard(
@@ -15,9 +15,11 @@ function MenuCard(
   }
 ) {
   return (
-    <Card title={title} extra={<Link to={`/${to}`}>Go</Link>} style={{ width: 300 }}>
-      <p>{desc}</p>
-    </Card>
+    <Col>
+      <Card title={title} extra={<Link to={`/${to}`}>Go</Link>} style={{ width: 300 }}>
+        <p>{desc}</p>
+      </Card>
+    </Col>
   );
 }
 

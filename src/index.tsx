@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import App from './components/App';
 
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.dark.css';
 
 ReactDOM.render((
   <Router>

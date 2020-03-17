@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, Col } from 'antd';
-import { Link } from 'react-router-dom';
+import { Card, Col, Button } from 'antd';
+import { Link, useHistory } from 'react-router-dom';
 
 function MenuCard(
   {
@@ -14,9 +14,20 @@ function MenuCard(
     desc: string
   }
 ) {
+  const history = useHistory();
+
+  function handleButtonClick() {
+    history.push(`/${to}`);
+  }
   return (
     <Col>
-      <Card title={title} extra={<Link to={`/${to}`}>Go</Link>} style={{ width: 300 }}>
+      <Card
+        title={title}
+        extra={<Button onClick={handleButtonClick} size='small' type='primary'>Go</Button>}
+        style={{ width: 300 }}
+        size='small'
+        hoverable
+      >
         <p>{desc}</p>
       </Card>
     </Col>

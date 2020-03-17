@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Menu, Affix } from 'antd';
 
 import { Tab } from '../types';

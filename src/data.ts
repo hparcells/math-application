@@ -1,4 +1,4 @@
-import SimpleMath from './components/tools/basicalgebra/SimpleMath';
+import SimpleMath from './components/tools/SimpleMath';
 
 import { Tool } from './types';
 

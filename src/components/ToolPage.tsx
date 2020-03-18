@@ -2,22 +2,26 @@ import React from 'react';
 import { PageHeader } from 'antd';
 import { useHistory } from 'react-router-dom';
 
+import { Tab } from '../types';
+
 function ToolPage(
   {
     title,
     description,
-    component: ToolContent
+    component: ToolContent,
+    tab
   }:
   {
     title: string,
     description: string,
-    component: () => JSX.Element
+    component: () => JSX.Element,
+    tab: Tab
   }
 ) {
   const history = useHistory();
 
   function handleBack() {
-    history.push('/');
+    history.push(`/?tab=${tab}`);
   }
 
   return (
@@ -27,7 +31,10 @@ function ToolPage(
         title={title}
         subTitle={description}
       />
-      <ToolContent />
+
+      <div style={{ maxWidth: '1500px', margin: 'auto'}}>
+        <ToolContent />
+      </div>
     </div>
   );
 }

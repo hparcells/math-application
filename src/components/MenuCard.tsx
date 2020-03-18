@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Col, Button } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function MenuCard(
   {

@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
 import {
   Switch,
-  Route
+  Route,
+  useLocation,
+  useHistory
 } from 'react-router-dom';
-import { Row } from 'antd';
+import { Row, Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 import Menu from './Menu';
 import ToolPage from './ToolPage';
 import MenuCard from './MenuCard';
 import NotFound from './NotFound';
+import NoContent from './NoContent';
 
 import { Tab } from '../types';
 
 import { data } from '../data';
 
 function App() {
-  const [tab, setTab] = useState<Tab>('basicalgebra');
+  const history = useHistory();
+  const query = new URLSearchParams(useLocation().search);
+
+  const [tab, setTab] = useState<Tab>(query.get('tab') as Tab || 'basicalgebra');
+  const [filter, setFilter] = useState<string>('');
 
   function switchTab(newTab: Tab) {
     setTab(newTab);
+    history.push(`/?tab=${newTab}`);
+  }
+  function handleFilterChange(event: any) {
+    setFilter(event.target.value);
   }
 
   return (
@@ -28,7 +40,12 @@ function App() {
           data.map((tool) => {
             return (
               <Route path={`/${tool.id}`} key={tool.id}>
-                <ToolPage title={tool.name} description={tool.description} component={tool.component}  />
+                <ToolPage
+                  title={tool.name}
+                  description={tool.description}
+                  component={tool.component}
+                  tab={tool.tab}
+                />
               </Route>
             );
           })
@@ -37,17 +54,35 @@ function App() {
         <Route exact path='/'>
           <Menu tab={tab} switchTab={switchTab} />
 
-          <Row justify='center' gutter={[16, 16]} style={{ margin: '0px' }}>
-            {
-              data.filter((tool) => {
-                return tool.tab === tab;
-              }).map((tool) => {
-                return (
-                  <MenuCard title={tool.name} to={tool.id} desc={tool.description} key={tool.id} />
-                );
-              })
-            }
-          </Row>
+          <div style={{ maxWidth: '1500px', margin: 'auto'}}>
+            <Input
+              placeholder='Search...'
+              prefix={<SearchOutlined />}
+              style={{ margin: '0px 1em 1em 1em', width: 'calc(100% - 2em)' }}
+              allowClear={true}
+              onChange={handleFilterChange}
+            />
+
+            <Row justify='center' gutter={[16, 16]} style={{ margin: '0px' }}>
+              {
+                data.filter((tool) => {
+                  return tool.tab === tab
+                    && (
+                      tool.name.toLowerCase().includes(filter)
+                      || tool.description.toLowerCase().includes(filter)
+                    );
+                }).length > 0
+                  ? data.filter((tool) => {
+                    return tool.tab === tab;
+                  }).map((tool) => {
+                    return (
+                      <MenuCard title={tool.name} to={tool.id} desc={tool.description} key={tool.id} />
+                    );
+                  })
+                  : <NoContent />
+              }
+            </Row>
+          </div>
         </Route>
         <Route path='*'>
           <NotFound />

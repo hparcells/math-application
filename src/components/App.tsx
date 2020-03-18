@@ -61,18 +61,28 @@ function App() {
               style={{ margin: '0px 1em 1em 1em', width: 'calc(100% - 2em)' }}
               allowClear={true}
               onChange={handleFilterChange}
+              value={filter}
             />
 
             <Row justify='center' gutter={[16, 16]} style={{ margin: '0px' }}>
+              {/* TODO: Make this better. */}
               {
                 data.filter((tool) => {
-                  return tool.tab === tab
-                    && (
-                      tool.name.toLowerCase().includes(filter)
-                      || tool.description.toLowerCase().includes(filter)
+                  if(filter) {
+                    return (
+                      tool.name.toLowerCase().includes(filter.toLowerCase())
+                      || tool.description.toLowerCase().includes(filter.toLowerCase())
                     );
+                  }
+                  return tool.tab === tab;
                 }).length > 0
                   ? data.filter((tool) => {
+                    if(filter) {
+                      return (
+                        tool.name.toLowerCase().includes(filter.toLowerCase())
+                        || tool.description.toLowerCase().includes(filter.toLowerCase())
+                      );
+                    }
                     return tool.tab === tab;
                   }).map((tool) => {
                     return (

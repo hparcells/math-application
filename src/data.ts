@@ -7,7 +7,7 @@ export const data: Tool[] = [
     tab: 'basicalgebra',
     id: 'simple',
     name: 'Simple Math',
-    description: 'Add, subtract, multiply, divide, raise and root numbers.',
+    description: 'Add, subtract, multiply, and divide numbers.',
     component: SimpleMath
   }
 ];

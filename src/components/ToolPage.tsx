@@ -32,7 +32,7 @@ function ToolPage(
         subTitle={description}
       />
 
-      <div style={{ maxWidth: '1500px', margin: 'auto'}}>
+      <div style={{ maxWidth: '1500px', margin: 'auto', padding: '1em' }}>
         <ToolContent />
       </div>
     </div>

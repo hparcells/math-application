@@ -1,4 +1,4 @@
-export type Tab = 'basicalgebra' | 'geometry' | 'biochem';
+export type Tab = 'basicalgebra' | 'geometry' | 'biochem' | 'physics';
 
 export interface Tool {
   tab: Tab;

@@ -25,14 +25,14 @@ function SimpleMath() {
   function handleActionChange(event: string) {
     setAction(event);
   }
-  function handleNumberOneChange(event: any) {
+  function handleNumberOneChange(event: React.ChangeEvent<HTMLInputElement>) {
     if(event.target.value === '') {
       setNumberOne(0);
     }else if(!isNaN(Number(event.target.value)) && isFinite(Number(event.target.value))) {
       setNumberOne(Number(event.target.value));
     }
   }
-  function handleNumberTwoChange(event: any) {
+  function handleNumberTwoChange(event: React.ChangeEvent<HTMLInputElement>) {
     if(event.target.value === '') {
       setNumberOne(0);
     }else if(!isNaN(Number(event.target.value)) && isFinite(Number(event.target.value))) {

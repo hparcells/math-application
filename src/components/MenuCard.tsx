@@ -26,6 +26,7 @@ function MenuCard(
         extra={<Button onClick={handleButtonClick} size='small' type='primary'>Go</Button>}
         style={{ width: 300 }}
         size='small'
+        onClick={handleButtonClick}
         hoverable
       >
         <p>{desc}</p>

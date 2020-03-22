@@ -34,6 +34,9 @@ function MenuComponent(
         <Menu.Item key='biochem'>
           Biology and Chemistry
         </Menu.Item>
+        <Menu.Item key='physics'>
+          Physics
+        </Menu.Item>
       </Menu>
     </Affix>
   );

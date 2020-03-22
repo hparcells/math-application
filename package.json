@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.0.2",
+    "@reverse/array": "^1.7.3",
+    "@types/algebra.js": "^0.2.1",
+    "algebra.js": "^0.2.6",
     "antd": "^4.0.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

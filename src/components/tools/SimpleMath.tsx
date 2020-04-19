@@ -34,7 +34,7 @@ function SimpleMath() {
   }
   function handleNumberTwoChange(event: React.ChangeEvent<HTMLInputElement>) {
     if(event.target.value === '') {
-      setNumberOne(0);
+      setNumberTwo(0);
     }else if(!isNaN(Number(event.target.value)) && isFinite(Number(event.target.value))) {
       setNumberTwo(Number(event.target.value));
     }

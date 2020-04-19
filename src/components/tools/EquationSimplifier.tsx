@@ -3,7 +3,7 @@ import { Input, Statistic, Alert } from 'antd';
 import { simplify } from 'mathjs';
 
 function EquationSimplifier() {
-  const [expression, setExpression] = useState<string>('');
+  const [expression, setExpression] = useState<string>('2x + 5 * 2');
   const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string>('');
 

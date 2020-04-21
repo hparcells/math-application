@@ -12,7 +12,7 @@ function EquationSimplifier() {
 
     try {
       setResult(simplify(expression).toString());
-    }catch(error) {
+    } catch (error) {
       setError(error.message);
     }
   }, [expression]);
@@ -35,24 +35,11 @@ function EquationSimplifier() {
 
       <Statistic
         title='Result'
-        value={
-          error
-            ? 'Error'
-            : result !== 'undefined' ? result : 'Invalid State'
-        }
+        value={error ? 'Error' : result !== 'undefined' ? result : 'Invalid State'}
         style={{ margin: '1em' }}
       />
 
-      {
-        error
-          ? <Alert
-            message='Error'
-            description={error}
-            type='error'
-            showIcon
-          />
-          : null
-      }
+      {error ? <Alert message='Error' description={error} type='error' showIcon /> : null}
     </div>
   );
 }

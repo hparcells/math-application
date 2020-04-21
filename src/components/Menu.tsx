@@ -3,16 +3,7 @@ import { Menu, Affix } from 'antd';
 
 import { Tab } from '../types';
 
-function MenuComponent(
-  {
-    tab,
-    switchTab
-  }:
-  {
-    tab: Tab,
-    switchTab: (tab: Tab) => void
-  }
-) {
+function MenuComponent({ tab, switchTab }: { tab: Tab; switchTab: (tab: Tab) => void }) {
   function handleMenuClick(event: any) {
     switchTab(event.key);
   }
@@ -25,18 +16,10 @@ function MenuComponent(
         mode='horizontal'
         style={{ marginBottom: '1em' }}
       >
-        <Menu.Item key='basicalgebra'>
-          Basic Math and Algebra
-        </Menu.Item>
-        <Menu.Item key='geometry'>
-          Geometry
-        </Menu.Item>
-        <Menu.Item key='biochem'>
-          Biology and Chemistry
-        </Menu.Item>
-        <Menu.Item key='physics'>
-          Physics
-        </Menu.Item>
+        <Menu.Item key='basicalgebra'>Basic Math and Algebra</Menu.Item>
+        <Menu.Item key='geometry'>Geometry</Menu.Item>
+        <Menu.Item key='biochem'>Biology and Chemistry</Menu.Item>
+        <Menu.Item key='physics'>Physics</Menu.Item>
       </Menu>
     </Affix>
   );

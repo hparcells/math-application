@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Switch,
-  Route,
-  useLocation,
-  useHistory
-} from 'react-router-dom';
+import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { Row, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
@@ -22,7 +17,7 @@ function App() {
   const history = useHistory();
   const query = new URLSearchParams(useLocation().search);
 
-  const [tab, setTab] = useState<Tab>(query.get('tab') as Tab || 'basicalgebra');
+  const [tab, setTab] = useState<Tab>((query.get('tab') as Tab) || 'basicalgebra');
   const [filter, setFilter] = useState<string>('');
 
   function switchTab(newTab: Tab) {
@@ -36,61 +31,69 @@ function App() {
   return (
     <div>
       <Switch>
-        {
-          data.map((tool) => {
-            return (
-              <Route path={`/${tool.id}`} key={tool.id}>
-                <ToolPage
-                  title={tool.name}
-                  description={tool.description}
-                  component={tool.component}
-                  tab={tool.tab}
-                />
-              </Route>
-            );
-          })
-        }
+        {data.map((tool) => {
+          return (
+            <Route path={`/${tool.id}`} key={tool.id}>
+              <ToolPage
+                title={tool.name}
+                description={tool.description}
+                component={tool.component}
+                tab={tool.tab}
+              />
+            </Route>
+          );
+        })}
 
+        {/* Sd */}
         <Route exact path='/'>
           <Menu tab={tab} switchTab={switchTab} />
 
-          <div style={{ maxWidth: '1500px', margin: 'auto'}}>
+          <div style={{ maxWidth: '1500px', margin: 'auto' }}>
             <Input
               placeholder='Search...'
               prefix={<SearchOutlined />}
-              style={{ margin: '0px 1em 1em 1em', width: 'calc(100% - 2em)' }}
+              style={{
+                margin: '0px 1em 1em 1em',
+                width: 'calc(100% - 2em)'
+              }}
               allowClear={true}
               onChange={handleFilterChange}
               value={filter}
             />
 
             <Row justify='center' gutter={[16, 16]} style={{ margin: '0px' }}>
-              {/* TODO: Make this better. */}
-              {
-                data.filter((tool) => {
-                  if(filter) {
-                    return (
-                      tool.name.toLowerCase().includes(filter.toLowerCase())
-                      || tool.description.toLowerCase().includes(filter.toLowerCase())
-                    );
-                  }
-                  return tool.tab === tab;
-                }).length > 0
-                  ? data.filter((tool) => {
-                    if(filter) {
+              {data.filter((tool) => {
+                if (filter) {
+                  return (
+                    tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+                    tool.description.toLowerCase().includes(filter.toLowerCase())
+                  );
+                }
+                return tool.tab === tab;
+              }).length > 0 ? (
+                data
+                  .filter((tool) => {
+                    if (filter) {
                       return (
-                        tool.name.toLowerCase().includes(filter.toLowerCase())
-                        || tool.description.toLowerCase().includes(filter.toLowerCase())
+                        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+                        tool.description.toLowerCase().includes(filter.toLowerCase())
                       );
                     }
                     return tool.tab === tab;
-                  }).map((tool) => {
+                  })
+                  .map((tool) => {
                     return (
-                      <MenuCard title={tool.name} to={tool.id} desc={tool.description} key={tool.id} />
+                      <MenuCard
+                        title={tool.name}
+                        to={tool.id}
+                        desc={tool.description}
+                        key={tool.id}
+                      />
                     );
                   })
-                  : <NoContent />
-              }
+              ) : (
+                <NoContent />
+              )}
             </Row>
           </div>
         </Route>

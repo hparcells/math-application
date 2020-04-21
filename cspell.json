@@ -1,0 +1,10 @@
+{
+    "version": "0.1",
+    "ignoreWords": [
+        "antd",
+        "basicalgebra",
+        "biochem",
+        "deletable",
+        "hoverable"
+    ]
+}

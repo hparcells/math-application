@@ -4,20 +4,17 @@ import { useHistory } from 'react-router-dom';
 
 import { Tab } from '../types';
 
-function ToolPage(
-  {
-    title,
-    description,
-    component: ToolContent,
-    tab
-  }:
-  {
-    title: string,
-    description: string,
-    component: () => JSX.Element,
-    tab: Tab
-  }
-) {
+function ToolPage({
+  title,
+  description,
+  component: ToolContent,
+  tab
+}: {
+  title: string;
+  description: string;
+  component: () => JSX.Element;
+  tab: Tab;
+}) {
   const history = useHistory();
 
   function handleBack() {
@@ -26,13 +23,15 @@ function ToolPage(
 
   return (
     <div>
-      <PageHeader
-        onBack={handleBack}
-        title={title}
-        subTitle={description}
-      />
+      <PageHeader onBack={handleBack} title={title} subTitle={description} />
 
-      <div style={{ maxWidth: '1500px', margin: 'auto', padding: '1em' }}>
+      <div
+        style={{
+          maxWidth: '1500px',
+          margin: 'auto',
+          padding: '1em'
+        }}
+      >
         <ToolContent />
       </div>
     </div>

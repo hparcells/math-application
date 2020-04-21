@@ -6,8 +6,9 @@ import App from './components/App';
 
 import 'antd/dist/antd.dark.css';
 
-ReactDOM.render((
+ReactDOM.render(
   <Router>
     <App />
-  </Router>
-), document.getElementById('root'));
+  </Router>,
+  document.getElementById('root')
+);

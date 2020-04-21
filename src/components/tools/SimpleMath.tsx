@@ -8,16 +8,16 @@ function SimpleMath() {
   const [result, setResult] = useState<number>(0);
 
   useEffect(() => {
-    if(action === 'add') {
+    if (action === 'add') {
       setResult(numberOne + numberTwo);
     }
-    if(action === 'subtract') {
+    if (action === 'subtract') {
       setResult(numberOne - numberTwo);
     }
-    if(action === 'multiply') {
+    if (action === 'multiply') {
       setResult(numberOne * numberTwo);
     }
-    if(action === 'divide') {
+    if (action === 'divide') {
       setResult(numberOne / numberTwo);
     }
   }, [action, numberOne, numberTwo]);
@@ -26,16 +26,16 @@ function SimpleMath() {
     setAction(event);
   }
   function handleNumberOneChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if(event.target.value === '') {
+    if (event.target.value === '') {
       setNumberOne(0);
-    }else if(!isNaN(Number(event.target.value)) && isFinite(Number(event.target.value))) {
+    } else if (!isNaN(Number(event.target.value)) && isFinite(Number(event.target.value))) {
       setNumberOne(Number(event.target.value));
     }
   }
   function handleNumberTwoChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if(event.target.value === '') {
+    if (event.target.value === '') {
       setNumberTwo(0);
-    }else if(!isNaN(Number(event.target.value)) && isFinite(Number(event.target.value))) {
+    } else if (!isNaN(Number(event.target.value)) && isFinite(Number(event.target.value))) {
       setNumberTwo(Number(event.target.value));
     }
   }
@@ -43,14 +43,28 @@ function SimpleMath() {
   return (
     <div>
       <Input.Group compact>
-        <Input style={{ width: 100, textAlign: 'center' }} value={numberOne} onChange={handleNumberOneChange} />
+        <Input
+          style={{
+            width: 100,
+            textAlign: 'center'
+          }}
+          value={numberOne}
+          onChange={handleNumberOneChange}
+        />
         <Select value={action} onChange={handleActionChange}>
           <Select.Option value='add'>+</Select.Option>
           <Select.Option value='subtract'>-</Select.Option>
           <Select.Option value='multiply'>*</Select.Option>
           <Select.Option value='divide'>/</Select.Option>
         </Select>
-        <Input style={{ width: 100, textAlign: 'center' }} value={numberTwo} onChange={handleNumberTwoChange} />
+        <Input
+          style={{
+            width: 100,
+            textAlign: 'center'
+          }}
+          value={numberTwo}
+          onChange={handleNumberTwoChange}
+        />
       </Input.Group>
 
       <Statistic title='Result' value={result} style={{ margin: '1em' }} />

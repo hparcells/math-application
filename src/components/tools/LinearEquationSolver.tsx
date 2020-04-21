@@ -23,7 +23,7 @@ function EquationSolver() {
         newResults.push(equation.solveFor(toSolve));
       });
       setResults(newResults);
-    }catch(error) {
+    } catch (error) {
       setError(error.message);
     }
   }, [leftSide, rightSide, solveFor]);
@@ -37,18 +37,22 @@ function EquationSolver() {
   function handleSolveForChange(value: string, index: number) {
     const newArray = solveFor.concat();
 
-    if(/^[a-zA-Z]+$/m.test(value)) {
-      newArray[newArray.map((x: any, i: any) => {
-        return [i, x];
-      }).filter((x: any) => {
-        return x[1] === newArray[index];
-      })[0][0]] = value.substr(value.length - 1);
+    if (/^[a-zA-Z]+$/m.test(value)) {
+      newArray[
+        newArray
+          .map((x: any, i: any) => {
+            return [i, x];
+          })
+          .filter((x: any) => {
+            return x[1] === newArray[index];
+          })[0][0]
+      ] = value.substr(value.length - 1);
 
       setSolveFor(newArray);
     }
   }
   function handleSolveForDelete(index: number) {
-    if(solveFor.length > 1) {
+    if (solveFor.length > 1) {
       setSolveFor(removeAt(solveFor, index));
     }
   }
@@ -58,56 +62,57 @@ function EquationSolver() {
 
   return (
     <div>
-      <Input style={{ width: 100, textAlign: 'center' }} value={leftSide} onChange={handleLeftSideChange} />
+      <Input
+        style={{
+          width: 100,
+          textAlign: 'center'
+        }}
+        value={leftSide}
+        onChange={handleLeftSideChange}
+      />
       <span style={{ margin: '0em 1em' }}>=</span>
-      <Input style={{ width: 100, textAlign: 'center' }} value={rightSide} onChange={handleRightSideChange} />
+      <Input
+        style={{
+          width: 100,
+          textAlign: 'center'
+        }}
+        value={rightSide}
+        onChange={handleRightSideChange}
+      />
 
       <Divider />
 
       <h3>Solve For</h3>
-      {
-        solveFor.map((toSolve, index) => {
-          return <InputSolveFor
+      {solveFor.map((toSolve, index) => {
+        return (
+          <InputSolveFor
             value={toSolve}
             index={index}
             deletable={solveFor.length > 1}
             onChange={handleSolveForChange}
             onDelete={handleSolveForDelete}
             key={index}
-          />;
-        })
-      }
-      <Button type='primary' onClick={handleAddNewToSolve} icon={<PlusOutlined />}>Add New</Button>
+          />
+        );
+      })}
+      <Button type='primary' onClick={handleAddNewToSolve} icon={<PlusOutlined />}>
+        Add New
+      </Button>
 
       <Divider />
 
-      {
-        error
-          ? <Alert
-            message='Error'
-            description={error}
-            type='error'
-            showIcon
-          />
-          : null
-      }
+      {error ? <Alert message='Error' description={error} type='error' showIcon /> : null}
 
-      {
-        results.map((result, index) => {
-          return (
-            <Statistic
-              title={solveFor[index]}
-              value={
-                error
-                  ? 'Error'
-                  : result ? result.toString() : 'Invalid State'
-              }
-              style={{ margin: '1em' }}
-              key={index}
-            />
-          );
-        })
-      }
+      {results.map((result, index) => {
+        return (
+          <Statistic
+            title={solveFor[index]}
+            value={error ? 'Error' : result ? result.toString() : 'Invalid State'}
+            style={{ margin: '1em' }}
+            key={index}
+          />
+        );
+      })}
     </div>
   );
 }

@@ -2,22 +2,19 @@ import React from 'react';
 import { Input, Button } from 'antd';
 import { DeleteFilled } from '@ant-design/icons';
 
-function InputSolveFor(
-  {
-    value,
-    index,
-    deletable,
-    onChange,
-    onDelete
-  }:
-  {
-    value: string,
-    index: number,
-    deletable: boolean,
-    onChange: (value: string, index: number) => void
-    onDelete: (index: number) => void
-  }
-) {
+function InputSolveFor({
+  value,
+  index,
+  deletable,
+  onChange,
+  onDelete
+}: {
+  value: string;
+  index: number;
+  deletable: boolean;
+  onChange: (value: string, index: number) => void;
+  onDelete: (index: number) => void;
+}) {
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
     onChange(event.target.value, index);
   }
@@ -30,14 +27,12 @@ function InputSolveFor(
       <Input
         value={value}
         onChange={handleOnChange}
-        style={{ width: 100, textAlign: 'center' }}
+        style={{
+          width: 100,
+          textAlign: 'center'
+        }}
       />
-      <Button
-        type='link'
-        onClick={handleDelete}
-        disabled={!deletable}
-        icon={<DeleteFilled />}
-      />
+      <Button type='link' onClick={handleDelete} disabled={!deletable} icon={<DeleteFilled />} />
     </div>
   );
 }

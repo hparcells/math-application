@@ -15,7 +15,11 @@ function NotFound() {
       icon={<h1 style={{ fontSize: '54px' }}>:(</h1>}
       title='404'
       subTitle='The page you are looking for does not exist.'
-      extra={<Button type='primary' onClick={handleBackClick} icon={<HomeOutlined />}>Back to Safety</Button>}
+      extra={
+        <Button type='primary' onClick={handleBackClick} icon={<HomeOutlined />}>
+          Back to Safety
+        </Button>
+      }
     />
   );
 }
